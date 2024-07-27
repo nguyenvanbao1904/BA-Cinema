@@ -4,16 +4,11 @@
  */
 package main;
 
-import org.hibernate.Session;
-import hibernateUtils.HibernateUtils;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.util.ArrayList;
-import java.util.List;
+import controllers.AccountController;
 import models.Account;
 import models.AccountType;
-import models.Movie;
-import models.Showtimes;
+import views.AccountView;
+import views.MenuView;
 
 /**
  *
@@ -22,28 +17,19 @@ import models.Showtimes;
 public class Main {
 
     public static void main(String[] args) {
-        Session session = HibernateUtils.getFactory().openSession();
-        session.getTransaction().begin();
-//        List<String> genre = new ArrayList<>();
-//        genre.add("Hai");
-//        genre.add("Hoat Hinh");
-//        List<String> director = new ArrayList<>();
-//        director.add("Nguyen Van Binh");
-//        director.add("Duong Thi Thanh Ngan");
-//        List<String> cast = new ArrayList<>();
-//        cast.add("Nguyen Thi Bao Ngoc");
-//        cast.add("Vu Hoang Phuong Anh");
-//        Movie doraemon = new Movie("doraemon32", "Doraemon va Nobita", genre, director, cast);
-//        session.persist(doraemon);
-//        
-//        Movie m = session.get(Movie.class, 1);
-//        
-//        List<Showtimes> l = m.getShowTimes();
-//        l.forEach(e -> System.out.printf("%s - %s - %s\n", e.getRoom(), e.getTheater(), e.getDateTime().toString()));
-
-        System.out.println("ok");
-
-        session.getTransaction().commit();
-        session.close();
+        MenuView menuView = new MenuView();
+        menuView.displayWelcomeView();
+        try{
+            AccountView accountView = new AccountView();
+            Account accountModel = new Account();
+            AccountController accountController = new AccountController(accountModel, accountView);
+            if(accountController.getAccountType() == AccountType.CLIENT){
+                menuView.displayMainClientView();
+            }else if(accountController.getAccountType() == AccountType.MANAGER){
+                System.out.println("Chua hoan thien");
+            }
+        }catch(NumberFormatException NFE){
+            System.out.println("Khong hop le!\n " + NFE.getMessage());
+        }
     }
 }

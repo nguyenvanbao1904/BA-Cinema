@@ -34,11 +34,11 @@
       </property>
       
       <!-- Mapping -->
-      <mapping class = "model.Account"/>
-      <mapping class = "model.Movie"/>
-      <mapping class = "model.Showtimes"/>
-      <mapping class = "model.Ticket"/>
-      <mapping class = "model.Customer"/>
-      <mapping class = "model.Promotion"/>
+      <mapping class = "models.Account"/>
+      <mapping class = "models.Movie"/>
+      <mapping class = "models.Showtimes"/>
+      <mapping class = "models.Ticket"/>
+      <mapping class = "models.Customer"/>
+      <mapping class = "models.Promotion"/>
    </session-factory>
 </hibernate-configuration>
