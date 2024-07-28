@@ -35,6 +35,10 @@ public class Showtimes implements Serializable{
     private String theater;
     @Column(nullable = false)
     private LocalDateTime dateTime;
+    @Column(nullable = false)
+    private int seats;
+    @Column(nullable = false)
+    private int selectedSeats;
     @ManyToOne()
     @JoinColumn(name = "movie")
     private Movie movie;
