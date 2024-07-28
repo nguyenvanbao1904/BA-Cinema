@@ -1,9 +1,11 @@
 D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\hibernateUtils\HibernateUtils.java
-D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\controllers\MenuController.java
 D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\views\AccountView.java
+D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\controllers\ClientController.java
 D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\models\Movie.java
 D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\controllers\ControllerRegistry.java
+D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\controllers\ShowtimesController.java
 D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\models\Ticket.java
+D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\views\ShowtimesView.java
 D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\controllers\ControllerInterface.java
 D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\models\Customer.java
 D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\models\Showtimes.java

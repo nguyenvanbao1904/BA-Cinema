@@ -50,12 +50,14 @@ public class Showtimes implements Serializable{
     public Showtimes() {
     }
 
-    public Showtimes(String code, String room, String theater, LocalDateTime dateTime, Movie movie) {
+    public Showtimes(String code, String room, String theater, LocalDateTime dateTime, Movie movie, int seats, int selectedSeats) {
         this.code = code;
         this.room = room;
         this.theater = theater;
         this.dateTime = dateTime;
         this.movie = movie;
+        this.seats = seats;
+        this.selectedSeats = selectedSeats;
     }
 
     public int getId() {

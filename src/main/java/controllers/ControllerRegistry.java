@@ -12,7 +12,7 @@ import java.util.Map;
  * @author MSII
  */
 public class ControllerRegistry {
-    private Map<String, ControllerInterface> controllers;
+    private final Map<String, ControllerInterface> controllers;
 
     public ControllerRegistry() {
         controllers = new HashMap<>();
@@ -22,7 +22,7 @@ public class ControllerRegistry {
         controllers.put(name, controller);
     }
     
-    public ControllerInterface getController(String name, ControllerInterface controller){
+    public ControllerInterface getController(String name){
         return controllers.get(name);
     }
 }
