@@ -10,6 +10,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import java.util.List;
 import models.Account;
 import models.AccountType;
 import org.hibernate.Session;
@@ -21,7 +22,7 @@ import org.hibernate.Session;
  */
 public class Test {
     public static void main(String[] args) {
-        Account acc = new Account("user1", "password456", AccountType.CLIENT);
+        Account acc = new Account("admin", "123", AccountType.MANAGER);
         Session session = HibernateUtils.getFactory().openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Account> query = builder.createQuery(Account.class);
@@ -30,15 +31,13 @@ public class Test {
         Predicate passwordPredicate = builder.equal(root.get("password").as(String.class), acc.getPassword());
         Predicate accountTypePredicate = builder.equal(root.get("accountType").as(AccountType.class), acc.getAccountType());
         query.where(builder.and(userNamePredicate, passwordPredicate, accountTypePredicate));
-        
         try{
             Account account = session.createQuery(query).getSingleResult();
             System.out.printf("%d - %s -%s", account.getId(), account.getUserName(), account.getPassword());
         }catch(NoResultException NRE){
             System.out.println("Khong khop");
         }
-       
         session.close();
-        
+    
     }
 }

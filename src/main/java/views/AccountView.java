@@ -24,12 +24,15 @@ public class AccountView {
         return Integer.parseInt(sc.nextLine());
     }
     
-    public Account getClientLoginInfoView(){
+    public Account getLoginInfoView(AccountType type){
+        if(type == AccountType.MANAGER){
+            System.out.println("*Danh cho quan tri vien");
+        }
         System.out.print("User name: ");
         String userName = sc.nextLine().trim();
         System.out.print("Password: ");
         String password = sc.nextLine().trim();
-        return new Account(userName, password, AccountType.CLIENT);
+        return new Account(userName, password, type);
     }
     
     public Account getClientSignUpInfoView(){

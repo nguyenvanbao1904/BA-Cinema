@@ -22,8 +22,8 @@ import views.AccountView;
  */
 public class AccountController {
 
-    private Account model;
-    private AccountView view;
+    private final Account model;
+    private final AccountView view;
     private AccountType type = null;
 
     public AccountController(Account model, AccountView view) {
@@ -37,11 +37,21 @@ public class AccountController {
         do {
             choice = view.displayClientMenuLoginView();
             switch (choice) {
+                case -1 -> {
+                    Account manager = view.getLoginInfoView(AccountType.MANAGER);
+                    if (login(manager)) {
+                        type = manager.getAccountType();
+                        choice = 0;
+                    } else {
+                        System.out.println("Thong tin dang nhap khong hop le");
+                        System.out.println("Lien he quan tri vien de duoc cap lai tai khoan");
+                    }
+                }
                 case 0 -> System.out.print("Bye");
                 case 1 -> {
-                    Account user = view.getClientLoginInfoView();
+                    Account user = view.getLoginInfoView(AccountType.CLIENT);
                     if (login(user)) {
-                        type = AccountType.CLIENT;
+                        type = user.getAccountType();
                         choice = 0;
                     } else {
                         System.out.println("Tai khoan hoac mat khau chua dung");
@@ -70,7 +80,7 @@ public class AccountController {
             Root<Account> root = query.from(Account.class);
             Predicate userNamePredicate = builder.equal(root.get("userName").as(String.class), acc.getUserName());
             Predicate passwordPredicate = builder.equal(root.get("password").as(String.class), acc.getPassword());
-            Predicate accountTypePredicate = builder.equal(root.get("accountType").as(AccountType.class), acc.getAccountType());
+            Predicate accountTypePredicate = builder.equal(root.get("accountType"), acc.getAccountType());
             query.where(builder.and(userNamePredicate, passwordPredicate, accountTypePredicate));
             try {   
                 session.createQuery(query).getSingleResult();
@@ -93,7 +103,6 @@ public class AccountController {
                 session.getTransaction().rollback();
                 return false;
             }
-            
         }
     }
 
