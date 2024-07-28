@@ -26,7 +26,7 @@ public class Main {
             if(accountController.getAccountType() == AccountType.CLIENT){
                 menuView.displayMainClientView();
             }else if(accountController.getAccountType() == AccountType.MANAGER){
-                System.out.println("Chua hoan thien");
+                menuView.displayMainManagerView();
             }
         }catch(NumberFormatException NFE){
             System.out.println("Khong hop le!\n " + NFE.getMessage());

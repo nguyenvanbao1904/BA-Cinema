@@ -22,9 +22,8 @@ import views.AccountView;
  */
 public class AccountController {
 
-    private final Account model;
+    private Account model;
     private final AccountView view;
-    private AccountType type = null;
 
     public AccountController(Account model, AccountView view) {
         this.model = model;
@@ -38,9 +37,8 @@ public class AccountController {
             choice = view.displayClientMenuLoginView();
             switch (choice) {
                 case -1 -> {
-                    Account manager = view.getLoginInfoView(AccountType.MANAGER);
-                    if (login(manager)) {
-                        type = manager.getAccountType();
+                    model = view.getLoginInfoView(AccountType.MANAGER);
+                    if (login(model)) {
                         choice = 0;
                     } else {
                         System.out.println("Thong tin dang nhap khong hop le");
@@ -49,17 +47,16 @@ public class AccountController {
                 }
                 case 0 -> System.out.print("Bye");
                 case 1 -> {
-                    Account user = view.getLoginInfoView(AccountType.CLIENT);
-                    if (login(user)) {
-                        type = user.getAccountType();
+                    model = view.getLoginInfoView(AccountType.CLIENT);
+                    if (login(model)) {
                         choice = 0;
                     } else {
                         System.out.println("Tai khoan hoac mat khau chua dung");
                     }
                 }
                 case 2 -> {
-                    Account user = view.getClientSignUpInfoView();
-                    if (signUp(user)) {
+                    model = view.getClientSignUpInfoView();
+                    if (signUp(model)) {
                         System.out.println("Dang ky tai khoan thanh cong");
                     } else {
                         System.out.println("Thong tin dang ky chua hop le");
@@ -107,6 +104,6 @@ public class AccountController {
     }
 
     public AccountType getAccountType() {
-       return type;
+       return model.getAccountType();
     }
 }

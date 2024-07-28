@@ -11,7 +11,7 @@ import java.util.Scanner;
  * @author MSII
  */
 public class MenuView {
-    private Scanner sc = new Scanner(System.in);
+    private final Scanner sc = new Scanner(System.in);
 
     public void displayWelcomeView() {
         System.out.println("==============Chao Mung Den Voi BA-Cinema==============");
@@ -32,6 +32,7 @@ public class MenuView {
         System.out.println("1. Quan ly lich chieu");
         System.out.println("2. Quan ly thong tin phim");
         System.out.println("3. Quan ly thong tin khach hang");
+        System.out.println("0. Thoat");
         System.out.print("Nhap lua chon cua ban: ");
         return Integer.parseInt(sc.nextLine());
     }
