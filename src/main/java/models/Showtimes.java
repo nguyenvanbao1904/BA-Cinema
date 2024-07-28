@@ -113,5 +113,20 @@ public class Showtimes implements Serializable{
     public void setTickets(Set<Ticket> tickets) {
         this.tickets = tickets;
     }
-    
+
+    public int getSeats() {
+        return seats;
+    }
+
+    public void setSeats(int seats) {
+        this.seats = seats;
+    }
+
+    public int getSelectedSeats() {
+        return selectedSeats;
+    }
+
+    public void setSelectedSeats(int selectedSeats) {
+        this.selectedSeats = selectedSeats;
+    }
 }
