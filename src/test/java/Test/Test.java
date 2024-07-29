@@ -17,9 +17,7 @@ public class Test {
     public static void main(String[] args) {
         Session session = HibernateUtils.getFactory().openSession();
         session.getTransaction().begin();
-        Showtimes showtimes = session.get(Showtimes.class, 6);
-        showtimes.setSeats(70);
-        showtimes.setSelectedSeats(23);
+        
         session.getTransaction().commit();
         session.close();
     

@@ -44,10 +44,17 @@ public class Showtimes implements Serializable{
     private Movie movie;
     @OneToMany(mappedBy = "showtime")
     private Set<Ticket> tickets;
-
-   
+    private boolean isExpired;
 
     public Showtimes() {
+    }
+
+    public boolean isIsExpired() {
+        return isExpired;
+    }
+
+    public void setIsExpired(boolean isExpired) {
+        this.isExpired = isExpired;
     }
 
     public Showtimes(String code, String room, String theater, LocalDateTime dateTime, Movie movie, int seats, int selectedSeats) {
