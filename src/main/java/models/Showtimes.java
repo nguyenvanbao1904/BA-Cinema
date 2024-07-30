@@ -65,6 +65,7 @@ public class Showtimes implements Serializable{
         this.movie = movie;
         this.seats = seats;
         this.selectedSeats = selectedSeats;
+        this.isExpired = dateTime.isBefore(LocalDateTime.now());
     }
 
     public int getId() {
