@@ -25,15 +25,14 @@ public class ShowtimesView {
             System.out.println("Lich chieu dang trong! Ban vui long quay lai sau");
             return;
         }
-        listshowTimes.forEach(e -> System.out.printf("\n\n%s\n%s    Dao Dien: %s\nPhong: %s    Rap: %s\nNgay cong chieu: %s\nSo ghe: %d    So ghe con lai: %d\n",
+        listshowTimes.forEach(e -> System.out.printf("\n\n%s\n%s    Dao Dien: %s\nPhong: %s    Rap: %s\nNgay cong chieu: %s\nSo ghe: %d\n",
                 e.getMovie().getName(),
                 listToString(e.getMovie().getGenre()),
                 listToString(e.getMovie().getDirector()),
                 e.getRoom(),
                 e.getTheater(),
                 e.getDateTime().format(DateTimeFormatter.ofPattern("HH:mm:ss - dd/MM/yyyy")),
-                e.getSeats(),
-                e.getSeats() - e.getSelectedSeats()
+                e.getSeats()
                 ));
     }
 }

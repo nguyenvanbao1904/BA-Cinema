@@ -37,8 +37,6 @@ public class Showtimes implements Serializable{
     private LocalDateTime dateTime;
     @Column(nullable = false)
     private int seats;
-    @Column(nullable = false)
-    private int selectedSeats;
     @ManyToOne()
     @JoinColumn(name = "movie")
     private Movie movie;
@@ -57,14 +55,13 @@ public class Showtimes implements Serializable{
         this.isExpired = isExpired;
     }
 
-    public Showtimes(String code, String room, String theater, LocalDateTime dateTime, Movie movie, int seats, int selectedSeats) {
+    public Showtimes(String code, String room, String theater, LocalDateTime dateTime, Movie movie, int seats) {
         this.code = code;
         this.room = room;
         this.theater = theater;
         this.dateTime = dateTime;
         this.movie = movie;
         this.seats = seats;
-        this.selectedSeats = selectedSeats;
         this.isExpired = dateTime.isBefore(LocalDateTime.now());
     }
 
@@ -130,13 +127,5 @@ public class Showtimes implements Serializable{
 
     public void setSeats(int seats) {
         this.seats = seats;
-    }
-
-    public int getSelectedSeats() {
-        return selectedSeats;
-    }
-
-    public void setSelectedSeats(int selectedSeats) {
-        this.selectedSeats = selectedSeats;
     }
 }

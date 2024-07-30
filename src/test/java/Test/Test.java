@@ -19,9 +19,6 @@ public class Test {
     public static void main(String[] args) {
         Session session = HibernateUtils.getFactory().openSession();
         session.getTransaction().begin();
-        Movie movie = session.get(Movie.class, 2);
-        Showtimes showtimes = new Showtimes("SS07", "A1", "Beta Quang Trung", LocalDateTime.now().plusDays(1), movie, 100, 30);
-        session.persist(showtimes);
         session.getTransaction().commit();
         session.close();
     
