@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import org.hibernate.annotations.ColumnDefault;
 
 /**
  *
@@ -31,10 +32,11 @@ public class Ticket implements Serializable{
     @ManyToOne
     @JoinColumn(name = "showtime")
     private Showtimes showtime;
-    
     @ManyToOne
     @JoinColumn(name = "customer")
     private Customer customer;
+    @ColumnDefault(value = "0")
+    private int numOfTicketBooked = 0;
 
     public Ticket() {
     }
