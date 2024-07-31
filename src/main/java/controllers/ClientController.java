@@ -20,14 +20,26 @@ public class ClientController implements ControllerInterface{
     }
     
     public void run(){
+        
         int choice;
         do {            
             choice = menuView.displayMainClientView();
             switch (choice) {
                 case 0 -> System.out.println("Bye");
+                case 1 -> {
+                    TicketController ticketController = (TicketController)controllers.getController(TicketController.class.getSimpleName());
+                    if(ticketController != null){
+                        ((ShowtimesController)controllers.getController(ShowtimesController.class.getSimpleName())).updateOldShowtimes();
+                        ticketController.showAllTicket(); 
+                        ticketController.bookTicket();
+                    }
+                }
                 case 3 -> {
                     ShowtimesController showTimescontroller = (ShowtimesController)controllers.getController(ShowtimesController.class.getSimpleName());
-                    showTimescontroller.getAllShowTimes();
+                    if(showTimescontroller != null){
+                        showTimescontroller.updateOldShowtimes();
+                        showTimescontroller.getAllShowTimes();
+                    }
                 }
                 default -> System.out.println("Lua chon khong hop le");
             }

@@ -86,5 +86,12 @@ public class Ticket implements Serializable{
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-    
+
+    public int getNumOfTicketBooked() {
+        return numOfTicketBooked;
+    }
+
+    public void setNumOfTicketBooked(int numOfTicketBooked) {
+        this.numOfTicketBooked = numOfTicketBooked;
+    }
 }

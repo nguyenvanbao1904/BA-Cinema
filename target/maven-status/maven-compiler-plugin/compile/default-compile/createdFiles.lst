@@ -7,6 +7,7 @@ models\Ticket.class
 views\AccountView.class
 main\Main.class
 controllers\ControllerInterface.class
+views\TicketView.class
 controllers\AccountController.class
 controllers\ClientController.class
 models\Customer.class

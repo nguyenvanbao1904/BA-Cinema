@@ -28,7 +28,7 @@ public class ShowtimesController implements ControllerInterface {
         this.view = view;
     }
 
-    private void updateOldShowtimes() {
+    public void updateOldShowtimes() {
         try (Session session = HibernateUtils.getFactory().openSession()) {
             session.getTransaction().begin();
             try {
@@ -43,11 +43,25 @@ public class ShowtimesController implements ControllerInterface {
             }
             session.getTransaction().commit();
         }
+        
+        try (Session session = HibernateUtils.getFactory().openSession()) {
+            session.getTransaction().begin();
+            try {
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+                CriteriaUpdate<Showtimes> update = builder.createCriteriaUpdate(Showtimes.class);
+                Root<Showtimes> root = update.from(Showtimes.class);
+                update.set(root.get("isExpired"), false).where(builder.greaterThan(root.get("dateTime"), LocalDateTime.now()));
+                session.createMutationQuery(update).executeUpdate();
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+                session.getTransaction().rollback();
+            }
+            session.getTransaction().commit();
+        }
     }
 
     public void getAllShowTimes() {
         try (Session session = HibernateUtils.getFactory().openSession()) {
-            this.updateOldShowtimes();
             List<Showtimes> showtimes = session.createQuery("from Showtimes where isExpired = :isExpired", Showtimes.class).setParameter("isExpired", false).getResultList();
             view.showAll(showtimes);
         }

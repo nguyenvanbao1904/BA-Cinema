@@ -4,6 +4,7 @@ D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\controllers\ClientCont
 D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\models\Movie.java
 D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\controllers\ControllerRegistry.java
 D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\controllers\ShowtimesController.java
+D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\controllers\TicketController.java
 D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\models\Ticket.java
 D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\views\ShowtimesView.java
 D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\controllers\ControllerInterface.java
@@ -15,4 +16,5 @@ D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\main\Main.java
 D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\models\Promotion.java
 D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\models\CustomerType.java
 D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\views\MenuView.java
+D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\views\TicketView.java
 D:\JavaCode\NetBeansProjects\LearnHibernate\src\main\java\models\Account.java
