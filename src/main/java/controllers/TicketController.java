@@ -38,6 +38,6 @@ public class TicketController implements ControllerInterface {
     }
     
     public void bookTicket(){
-        
+        model = view.getBookingTicketInfo();
     }
 }

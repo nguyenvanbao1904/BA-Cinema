@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -38,6 +39,8 @@ public class Customer implements Serializable{
     private Set<Ticket> tickets;
     @ManyToMany(mappedBy = "customers")
     private Set<Promotion> promotions;
+    @OneToOne(mappedBy = "customer")
+    private Account account;
 
     public Customer() {
     }
@@ -103,5 +106,13 @@ public class Customer implements Serializable{
 
     public void setPromotions(Set<Promotion> promotions) {
         this.promotions = promotions;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }
