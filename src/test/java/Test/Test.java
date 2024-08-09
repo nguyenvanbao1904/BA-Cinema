@@ -4,6 +4,7 @@
  */
 package Test;
 
+import controllers.ShowtimesController;
 import hibernateUtils.HibernateUtils;
 import java.time.LocalDateTime;
 import models.Movie;
@@ -19,6 +20,8 @@ public class Test {
     public static void main(String[] args) {
         Session session = HibernateUtils.getFactory().openSession();
         session.getTransaction().begin();
+        ShowtimesController c = new ShowtimesController(new Showtimes(), new views.ShowtimesView());
+        c.updateOldShowtimes();
         session.getTransaction().commit();
         session.close();
     

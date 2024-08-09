@@ -34,6 +34,7 @@ public class Main {
             AccountView accountView = new AccountView();
             Account accountModel = new Account();
             AccountController accountController = new AccountController(accountModel, accountView);
+            
             ControllerRegistry controllers = new ControllerRegistry();
             controllers.register(ShowtimesController.class.getSimpleName(), new ShowtimesController(new Showtimes(), new ShowtimesView()));
             controllers.register(TicketController.class.getSimpleName(), new TicketController(new Ticket(), new TicketView()));

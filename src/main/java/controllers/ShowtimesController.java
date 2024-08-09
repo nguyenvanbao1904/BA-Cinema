@@ -38,6 +38,7 @@ public class ShowtimesController implements ControllerInterface {
                 Root<Showtimes> root = update.from(Showtimes.class);
                 Predicate p = isExpired ? builder.lessThan(root.get("dateTime"), LocalDateTime.now()): builder.greaterThan(root.get("dateTime"), LocalDateTime.now());
                 update.set(root.get("isExpired"), isExpired).where(p);
+                session.createMutationQuery(update).executeUpdate();
                 session.getTransaction().commit();
             }catch(Exception e){
                 System.out.println(e.getMessage());
@@ -47,8 +48,8 @@ public class ShowtimesController implements ControllerInterface {
     }
 
     public void updateOldShowtimes() {
-        updateShowtimes(true);
-        updateShowtimes(false);
+        this.updateShowtimes(true);  
+        this.updateShowtimes(false);
         
     }
 
