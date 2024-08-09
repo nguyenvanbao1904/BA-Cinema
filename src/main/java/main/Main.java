@@ -27,28 +27,28 @@ import views.TicketView;
 public class Main {
 
     public static void main(String[] args) {
-//        MenuView menuView = new MenuView();
-//        menuView.displayWelcomeView();
-//        
-//        try{
-//            AccountView accountView = new AccountView();
-//            Account accountModel = new Account();
-//            AccountController accountController = new AccountController(accountModel, accountView);
-//            ControllerRegistry controllers = new ControllerRegistry();
-//            controllers.register(ShowtimesController.class.getSimpleName(), new ShowtimesController(new Showtimes(), new ShowtimesView()));
-//            controllers.register(TicketController.class.getSimpleName(), new TicketController(new Ticket(), new TicketView()));
-//            if(accountController.getAccountType() == AccountType.CLIENT){
-//                ClientController clientController = new ClientController(controllers, menuView);
-//                clientController.run();
-//            }else if(accountController.getAccountType() == AccountType.MANAGER){
-//                menuView.displayMainManagerView();
-//            }
-//            
-//        }catch(NumberFormatException NFE){
-//            System.out.println("Khong hop le!\n " + NFE.getMessage());
-//        }
-        Session session = hibernateUtils.HibernateUtils.getFactory().openSession();
-        Customer customer = new Customer();
-        session.close();
+        MenuView menuView = new MenuView();
+        menuView.displayWelcomeView();
+        
+        try{
+            AccountView accountView = new AccountView();
+            Account accountModel = new Account();
+            AccountController accountController = new AccountController(accountModel, accountView);
+            ControllerRegistry controllers = new ControllerRegistry();
+            controllers.register(ShowtimesController.class.getSimpleName(), new ShowtimesController(new Showtimes(), new ShowtimesView()));
+            controllers.register(TicketController.class.getSimpleName(), new TicketController(new Ticket(), new TicketView()));
+            if(accountController.getAccountType() == AccountType.CLIENT){
+                ClientController clientController = new ClientController(controllers, menuView);
+                clientController.run();
+            }else if(accountController.getAccountType() == AccountType.MANAGER){
+                menuView.displayMainManagerView();
+            }
+            
+        }catch(NumberFormatException NFE){
+            System.out.println("Khong hop le!\n " + NFE.getMessage());
+        }
+//        Session session = hibernateUtils.HibernateUtils.getFactory().openSession();
+//        Customer customer = new Customer();
+//        session.close();
     }
 }

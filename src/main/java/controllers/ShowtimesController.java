@@ -7,6 +7,7 @@ package controllers;
 import hibernateUtils.HibernateUtils;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaUpdate;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -27,37 +28,28 @@ public class ShowtimesController implements ControllerInterface {
         this.model = model;
         this.view = view;
     }
+    
+    private void updateShowtimes(boolean isExpired){
+        try(Session session = HibernateUtils.getFactory().openSession()){
+            session.getTransaction().begin();
+            try{
+                CriteriaBuilder builder = session.getCriteriaBuilder();
+                CriteriaUpdate<Showtimes> update = builder.createCriteriaUpdate(Showtimes.class);
+                Root<Showtimes> root = update.from(Showtimes.class);
+                Predicate p = isExpired ? builder.lessThan(root.get("dateTime"), LocalDateTime.now()): builder.greaterThan(root.get("dateTime"), LocalDateTime.now());
+                update.set(root.get("isExpired"), isExpired).where(p);
+                session.getTransaction().commit();
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+                session.getTransaction().rollback();
+            }
+        }
+    }
 
     public void updateOldShowtimes() {
-        try (Session session = HibernateUtils.getFactory().openSession()) {
-            session.getTransaction().begin();
-            try {
-                CriteriaBuilder builder = session.getCriteriaBuilder();
-                CriteriaUpdate<Showtimes> update = builder.createCriteriaUpdate(Showtimes.class);
-                Root<Showtimes> root = update.from(Showtimes.class);
-                update.set(root.get("isExpired"), true).where(builder.lessThan(root.get("dateTime"), LocalDateTime.now()));
-                session.createMutationQuery(update).executeUpdate();
-            }catch(Exception e){
-                System.out.println(e.getMessage());
-                session.getTransaction().rollback();
-            }
-            session.getTransaction().commit();
-        }
+        updateShowtimes(true);
+        updateShowtimes(false);
         
-        try (Session session = HibernateUtils.getFactory().openSession()) {
-            session.getTransaction().begin();
-            try {
-                CriteriaBuilder builder = session.getCriteriaBuilder();
-                CriteriaUpdate<Showtimes> update = builder.createCriteriaUpdate(Showtimes.class);
-                Root<Showtimes> root = update.from(Showtimes.class);
-                update.set(root.get("isExpired"), false).where(builder.greaterThan(root.get("dateTime"), LocalDateTime.now()));
-                session.createMutationQuery(update).executeUpdate();
-            }catch(Exception e){
-                System.out.println(e.getMessage());
-                session.getTransaction().rollback();
-            }
-            session.getTransaction().commit();
-        }
     }
 
     public void getAllShowTimes() {
